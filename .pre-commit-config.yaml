@@ -1,0 +1,33 @@
+---
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.103.0
+    hooks:
+      - id: terraform_fmt
+        args:
+          - --args=-diff
+      - id: terraform_validate
+        args:
+          - --hook-config=--retry-once-with-cleanup=true
+      - id: terraform_tflint
+      - id: terraform_trivy
+        args:
+          - --args=--severity=HIGH,CRITICAL
+      - id: terraform_checkov
+        args:
+          - --args=--compact
+          - --args=--quiet
+          - --args=--skip-check CKV_AWS_18,CKV2_AWS_61,CKV2_AWS_62,CKV2_AWS_64,CKV_AWS_144
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.5
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
+        args:
+          - "--no-warnings"
+          - "-d {extends: relaxed, rules: {line-length: {max: 90}, new-lines: {type: platform}}}"

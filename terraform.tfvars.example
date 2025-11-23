@@ -1,0 +1,8 @@
+# AWS sensitive variables
+access_key = ""
+secret_key = ""
+# Snowflake sensitive variables
+organization_name = ""
+account_name = ""
+user = "" 
+password = ""
