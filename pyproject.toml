@@ -1,0 +1,31 @@
+[project]
+author = "Shane McGovern"
+name = "SnowSSI"
+version = "0.0.0"
+description = "SnowSSI (Snowflake, Stage & S3 Integration) is Terraform infrastructure as code for automated AWS S3-Snowflake integration with event-driven file processing, KMS encryption, and reusable modules."
+readme = "README.md"
+requires-python = ">=3.12.7"
+dependencies = [
+    "pytest>=9.0.1",
+    "pytest-cov>=7.0.0",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.4.0",
+    "pytest>=9.0.1",
+    "snowflake-cli-labs>=3.13.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = ["-v", "--strict-markers", "--tb=short"]
+
+[tool.semantic_release]
+version_toml = []
+build_command = ""
+branch = "main"
